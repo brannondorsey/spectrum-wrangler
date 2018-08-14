@@ -155,9 +155,9 @@ def geoindextable():
 		WHERE LOC_LONG_DEG > 0 and LOC_LONG_MIN > 0 and LOC_LONG_SEC > 0 and LOC_LONG_DIR is not null
 		""")
 	cur.execute("CREATE EXTENSION postgis")
-	cur.execute("alter table fcclicenses ADD COLUMN geom geometry(POINT,4326)")
-	cur.execute("update fcclicenses SET geom = ST_SetSRID(ST_MakePoint(long,lat),4326)")
-	cur.execute("create index idx_geom on fcclicenses using GIST(geom)")
+	cur.execute("ALTER TABLE fcclicenses ADD COLUMN geom geometry(POINT,4326)")
+	cur.execute("UPDATE fcclicenses SET geom = ST_SetSRID(ST_MakePoint(long,lat),4326)")
+	cur.execute("CREATE INDEX idx_geom ON fcclicenses USING GIST(geom)")
 	conn.commit()
 
 print "Adding DMS2DD PostGIS extension"
